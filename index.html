@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERT</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand mb-0 ms-1 h1 fs-4" href="./">PERT</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="./">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./calcular.html">Calcular</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <section class="container">
+    <h1 class="mt-4">PERT</h1>
+    <p class="fs-5">Program Evaluation and Review Technique</p>
+    <h2>Oque é o PERT?</h2>
+    <p>
+      PERT é uma técnica de gerenciamento de projetos que ajuda a estimar o tempo necessário para completar uma tarefa ou projeto.
+      A técnica usa uma abordagem probabilística para estimar o tempo de conclusão de uma tarefa.
+      Em vez de fornecer uma única estimativa de tempo, a PERT usa três valores:
+    </p>
+    <p>
+      <b>Tempo Otimista:</b> Este número é altamente otimista. Ou seja você só consegue completar a tarefa nessa velocidade se tudo der certo. <br>
+      <b>Tempo Mais Provável:</b> Este número é o mais provável de acontecer. Ou seja, você tem 50% de chance de completar a tarefa nessa velocidade. <br>
+      <b>Tempo Pessimista:</b> Este número é altamente pessimista. Inclui tudo que pode dar errado ao executar essa tarefa (exceto furacões, guerra nuclear, buracos negros e outras catástrofes). <br>
+    </p>
+    <p>Estimativa de tempo = (Tempo Otimista + (4 x Tempo Mais Provável) + Tempo Pessimista) / 6</p>
+    <h3>Exemplo</h3>
+    <p>
+      Tempo Otimista: 5 dias <br>
+      Tempo Mais Provavel: 7 dias <br>
+      Tempo Pessimista: 10 dias <br>
+    </p>
+    <p>
+      R = (5 + (4 x 7) + 10) / 6 <br>
+      R = (5 + 28 + 6) / 6 <br>
+      R = 39 / 6 <br>
+      R = 6,5 dias <br>
+    </p>
+    <p>
+      Portanto, a estimativa dessas tarefa é de <b>6 dias e meio</b>
+    </p>
+    <div class="alert alert-primary">
+      <i class="fa-solid fa-bell"></i>
+      Você pode usar outras unidades de tempo como horas, dias, semanas, meses, etc...
+    </div>
+    <h3>Fonte</h3>
+    <p>
+      Esse projeto foi inspirado por uma <a href="https://www.tabnews.com.br/mikeDRei/melhore-suas-estimativas-de-projetos-e-entregas-com-a-tecnica-pert">publicação sensacional do mikeDRei</a>
+      no TabNews, onde pude aprender a tecnica do PERT.
+    </p>
+  </section>
+
+  <footer class="bg-dark text-light text-center p-3 mt-5">
+    <div>
+      Desenvolvido com &#10084; por <a href="https://github.com/AlisonSarto" target="_blank">AlisonSarto</a> &copy; <span id="year"></span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>

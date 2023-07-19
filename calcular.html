@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcular - PERT</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <style>
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+    section {
+      padding-bottom: 100px;
+    }
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand mb-0 ms-1 h1 fs-4" href="./">PERT</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="./">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="./calcular.html">Calcular</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <section class="container">
+    <h1 class="mt-4">Calcular PERT</h1>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+            <i class="fa-solid fa-circle-info me-1"></i>
+            Informações
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+              <b>Tempo Otimista:</b> Este número é altamente otimista. Ou seja você só consegue completar a tarefa nessa velocidade se tudo der certo. <br>
+              <b>Tempo Mais Provável:</b> Este número é o mais provável de acontecer. Ou seja, você tem 50% de chance de completar a tarefa nessa velocidade. <br>
+              <b>Tempo Pessimista:</b> Este número é altamente pessimista. Inclui tudo que pode dar errado ao executar essa tarefa (exceto furacões, guerra nuclear, buracos negros e outras catástrofes). <br>
+              <b>Unidade de Tempo:</b> Pode ser horas, dias, semanas, mesês, etc..
+            </p>
+            <div class="alert alert-warning">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Utilize a mesma unidade de tempo em todos os campos!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-square-root-variable"></i>
+        Calcular
+      </div>
+
+      <div class="card-body row">
+        <div class="col-md-3">
+          <label class="form-label">Tempo Otimista <b class="text-danger">*</b></label>
+          <input type="number" class="form-control" id="TO">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Tempo Mais Provável <b class="text-danger">*</b></label>
+          <input type="number" class="form-control" id="TN">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Tempo Pessimista <b class="text-danger">*</b></label>
+          <input type="number" class="form-control" id="TP">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Unidade de Tempo</label>
+          <input type="text" class="form-control" id="TU">
+        </div>
+      </div>
+    </div>
+    <br>
+    <input type="button" class="btn btn-primary" id="calc" value="Calcular" disabled>
+    <br><br>
+    <p id="result"></p>
+  </section>
+
+  <footer class="bg-dark text-light text-center p-3 mt-5">
+    <div>
+      Desenvolvido com 	&#10084; por <a href="https://github.com/AlisonSarto" target="_blank">AlisonSarto</a> &copy; <span id="year"></span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="./js/script.js"></script>
+  <script>
+    $(window).on('load', function() {
+      $('.form-control').on('keyup', function() {
+        var $TO = $('#TO');
+        var $TN = $('#TN');
+        var $TP = $('#TP');
+
+        var valTO = Number($TO.val());
+        var valTN = Number($TN.val());
+        var valTP = Number($TP.val());
+
+        // Verificar se todos os campos têm valores não vazios e são maiores que zero
+        if (valTO !== '' && valTN !== '' && valTP !== '' && Number($('#TU').val()) !== '') {
+          // Verificar se todos os valores são maiores que zero
+          if (valTO > 0 && valTN > 0 && valTP > 0) {
+            if (valTP > valTN && valTN > valTO) {
+              $('#calc').prop('disabled', false);
+            } else {
+              $('#calc').prop('disabled', true);
+            }
+          } else {
+            $('#calc').prop('disabled', true);
+          }
+        } else {
+          $('#calc').prop('disabled', true);
+        }
+      });
+      $('#calc').click(function() {
+        var TO = $('#TO').val();
+        var TN = $('#TN').val();
+        var TP = $('#TP').val();
+        var TU = $('#TU').val();
+        TU = TU.toLowerCase();
+
+        var result = (parseInt(TO) + (4 * parseInt(TN)) + parseInt(TP)) / 6;
+        let resultFormat = Number(result.toFixed(2));
+        if (result === resultFormat) {
+          resultFormat = Math.trunc(result);
+        }
+        $('#result').html(`
+          <div class="alert alert-success">
+            <i class="fa-solid fa-check"></i>
+            A estimativa da tafera é de: <b>${resultFormat} ${TU} </b> 
+          </div>
+        `);
+      });
+      $(document).on("keydown", function(event) {
+        if (event.keyCode === 13) {
+          if (!$("#calc").is(":disabled")) {
+            $("#calc").click();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
